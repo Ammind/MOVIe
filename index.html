@@ -4,66 +4,39 @@
   <meta charset="utf-8" />
   <title>MOVIe</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
-   
   </style>
  </head>
  <body>
-  <header class="header">
-    <div class="header__logo">
-      <a href="/films">Movie</a>
-    </div>
-    <form>
-      <input type="text", class="header__search" placeholder="Пошук"/>
-    </form>
-    <div class="header__content">
-      <a href="/add_film">Додати фільм</a>
-    </div>
-  </header>
-<div class="golovno">
-  <h1><%= film.Name %></h1>
-  <div class="golovno1">
-    <div class="img_btn">
-      <div>
-      <img src="<%= film.Image%>">
-    </div>
-      <div>
-        <form action="/edit<%= film._id%>">
-        <button class="btn_edit" href="/edit<%= film._id%>">
-          <!-- <a href="/edit<%= film._id%>"> -->
-            <i class="fas fa-edit"></i>
-          </a>
-        </button>
-      </form>
-      <button class="btn__delete" data-_id="<%= film._id %>">
-        <i class="fas fa-trash-alt" data-_id="<%= film._id %>"></i>
-    </button>
-    
+<header class="header">
+  <div class="header__logo">
+    <a href="/films">Movie</a>
   </div>
-    </div>
-    <div class="text">
-      <h4>Жанр: <%= film.Genre %></h4>
-      <h4>Дата: <%= film.ReleaseYear %></h4>
-      <h4>Страна: <%= film.Country %></h4>
-      <h4>Вік: <%= film.Age %></h4>
-      <h4>Опис: <%= film.Description %></h4>
-    </div>
+  <form>
+    <input type="text", class="header__search" placeholder="Пошук"/>
+  </form>
+  <div class="header__content">
+    <a href="/add_film">Додати фільм</a>
+  </div>
+</header>
+<div class="golovno">
+  <h1>Дивитися фільми в HD онлайн</h1>
+  <br>
+  <div class="golovno_films">
+    <ul> 
+  <% films.forEach(({_id, Name, Genre, Image }) => {%>
+    <li>
+    <a href="/films<%= _id %>"><img src="<%= Image%>" ></a>
+    <!-- <div class="film__dark"><img src="<%= Image%>" class="a222"></div> -->
+    <br>
+    <a href="/films<%= _id %>" class="a111"><%= Name %></a>
+    <br>
+    <h6><%= Genre %></h6>
+  </li>
+    <%}) %>
+  </ul>
+  </div>
 </div>
-
-</div>
-
-<script>
-  document.addEventListener('click', (e) => {
-    const _id = e.target?.dataset?._id || null;
-    if (_id) {
-      fetch(`/films${_id}`, {
-        method: 'DELETE', 
-      }).then(()=> {
-        window.location.href = '/films';
-      });
-    }
-  });
-</script>
+<script src="./app.js"></script>
  </body>
 </html>
