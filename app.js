@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
 
     res.setHeader('Content-Type', 'text/html');
 
-    const createPath = (page) => path.resolve(__dirname, 'views', `${page}.html`);
+    const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.html`);
     let basePath = '';
 
 switch(req.url) {
